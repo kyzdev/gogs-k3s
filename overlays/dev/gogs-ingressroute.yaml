@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ingressroutetls
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`gogs-dev.n0secure.org`)
+    kind: Rule
+    services:
+    - name: dev-gogs
+      port: 3000
+    middlewares:
+      - name: dev-gogs-headers

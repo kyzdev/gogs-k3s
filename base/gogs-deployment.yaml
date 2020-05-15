@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gogs
+  labels:
+    app: gogs
+spec:
+  ports:
+    - name: web
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+    - name: ssh
+      protocol: TCP
+      port: 22
+      targetPort: 22
+  selector:
+    app: gogs
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gogs-claim
+  labels:
+    app: gogs
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-storage
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gogs
+  labels:
+    app: gogs
+spec:
+  selector:
+    matchLabels:
+      app: gogs
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: gogs
+    spec:
+      containers:
+      - image: gogs/gogs:latest
+        name: gogs
+        ports:
+        - containerPort: 3000
+          name: gogs-web
+        - containerPort: 22
+          name: gogs-ssh
+        volumeMounts:
+        - name: gogs-storage
+          mountPath: /data
+      volumes:
+      - name: gogs-storage
+        persistentVolumeClaim:
+          claimName: gogs-claim

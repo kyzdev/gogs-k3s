@@ -1,0 +1,11 @@
+namespace: dev-gogs
+bases:
+- ../../base
+patchesStrategicMerge:
+- gogs-deployment.yaml
+- gogs-ingressroute.yaml
+images:
+- name: gogs/gogs
+  newName: gogs/gogs
+  newTag: 0.11.91
+namePrefix: dev-

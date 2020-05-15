@@ -1,0 +1,6 @@
+namespace: gogs
+resources:
+- gogs-namespace.yaml
+- gogs-deployment.yaml
+- gogs-ingressroute.yaml
+- gogs-headers.yaml

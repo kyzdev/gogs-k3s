@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: gogs-claim
+  labels:
+    app: gogs
+spec:
+  storageClassName: managed-nfs-storage

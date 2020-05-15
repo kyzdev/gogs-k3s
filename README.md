@@ -1,6 +1,6 @@
 # gogs-k3s
 
-A kubectl YAML to deploy GOGS on a Kubernetes Stack
+A kubectl YAML to deploy GOGS on Kubernetes
 
 ## Post-Installation
 

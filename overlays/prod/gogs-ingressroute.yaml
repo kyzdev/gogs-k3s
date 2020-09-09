@@ -9,7 +9,7 @@ spec:
   - match: Host(`gogs.n0secure.org`)
     kind: Rule
     services:
-    - name: prod-gogs
+    - name: gogs
       port: 3000
     middlewares:
-      - name: prod-gogs-headers
+      - name: gogs-headers

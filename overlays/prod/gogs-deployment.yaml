@@ -5,4 +5,4 @@ metadata:
   labels:
     app: gogs
 spec:
-  storageClassName: managed-nfs-storage
+  storageClassName: openebs-hostpath
